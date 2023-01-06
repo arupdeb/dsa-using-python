@@ -1,9 +1,8 @@
 '''
-A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, 
+it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 
 Given a string s, return true if it is a palindrome, or false otherwise.
-
- 
 
 Example 1:
 
@@ -29,7 +28,7 @@ Constraints:
 s consists only of printable ASCII characters.
 '''
 
-# solution 1: 
+# solution 1: not a good solution
 # time limit exceeded. Space complexity is o(n)
 
 # class Solution(object):
@@ -49,4 +48,14 @@ s consists only of printable ASCII characters.
 #             if s[i] != s[-(i+1)]:
 #                 return False
 #         return True
+
+# solution 2: similar approach but in a differnt way.
+# time complexity : o(n) - space complexity o(n) // not ideal 
+# class Solution(object):
+#     def isPalindrome(self, s):
+#         newstring = ""
+#         for c in s:
+#             if c.isalnum():
+#                 newstring += c.lower()
+#         return newstring == newstring[::-1]  // used new memory while reversing 
 
