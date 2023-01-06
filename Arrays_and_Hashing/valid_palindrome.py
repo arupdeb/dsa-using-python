@@ -29,7 +29,7 @@ s consists only of printable ASCII characters.
 '''
 
 # solution 1: not a good solution
-# time limit exceeded. Space complexity is o(n)
+# time limit exceeded. Space complexity is o(1)
 
 # class Solution(object):
 #     def isPalindrome(self, s):
@@ -49,7 +49,7 @@ s consists only of printable ASCII characters.
 #                 return False
 #         return True
 
-# solution 2: similar approach but in a differnt way.
+# solution 2: similar approach but in a differnt way. # runtime: 141 ms
 # time complexity : o(n) - space complexity o(n) // not ideal 
 # class Solution(object):
 #     def isPalindrome(self, s):
@@ -59,3 +59,56 @@ s consists only of printable ASCII characters.
 #                 newstring += c.lower()
 #         return newstring == newstring[::-1]  // used new memory while reversing 
 
+# solution 3: Use o(1) memory
+# time complexity : o(n), space complexity is o(1)
+
+class Solution(object):
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        i, j = 0, len(s)-1
+
+        while i<j :
+            if  not self.isAlphanum(s[i]):
+                i+=1
+                continue
+            if not self.isAlphanum(s[j]):
+                j-=1
+                continue
+            if s[i].lower() != s[j].lower():
+                return False
+            i+=1
+            j-=1
+        return True
+
+    def isAlphanum(self, c):
+        return ( ( chr(97) <= c <= chr(122)) or 
+                    (chr(48) <= c <= chr(57)) or 
+                    ( chr(65) <= c <= chr(90)) )
+
+
+# alternate solution takes 70 ms runtime: just changing 'if' to 'while' // 2 loops does not take o(n^2)
+# class Solution(object):
+#     def isPalindrome(self, s):
+#         """
+#         :type s: str
+#         :rtype: bool
+#         """
+#         i, j = 0, len(s)-1
+
+#         while i<j :
+#             while i<j and  not self.isAlphanum(s[i]):
+#                 i+=1
+#             while i<j and not self.isAlphanum(s[j]):
+#                 j-=1
+#             if s[i].lower() != s[j].lower():
+#                 return False
+#             i,j = i+1, j-1
+#         return True
+
+#     def isAlphanum(self, c):
+#         return ( ( chr(97) <= c <= chr(122)) or 
+#                     (chr(48) <= c <= chr(57)) or 
+#                     ( chr(65) <= c <= chr(90)) )
