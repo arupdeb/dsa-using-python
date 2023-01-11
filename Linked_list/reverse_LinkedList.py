@@ -29,8 +29,6 @@ Follow up: A linked list can be reversed either iteratively or recursively. Coul
 '''
 
 
-# solution 1: using 2 pointer theory
-
 # Definition for singly-linked list.
 class ListNode(object):
     def __init__(self, val=0, next=None):
@@ -47,6 +45,9 @@ class ListNode(object):
                 temp = temp.next
 
 class Solution(object):
+    # reverse a linked list using 2 pointer theory : Solution 1
+    # time compexity o(n) ; Space complexity o(1); 
+    # runtime: 25 ms; memory: 15.4 MB
     def reverseList(self, head):
         """
         :type head: ListNode
@@ -60,6 +61,20 @@ class Solution(object):
             prev = curr
             curr = temp
         return prev
+    
+    # reverse a linked list using recursion: solution 2
+    #time complexity o(n) ; space complexity : o(n);
+    # runtime : 19 ms; memory: 18.8 MB
+    def recusiveReverseList(self, head):
+        if head == None or head.next == None:
+            return head
+        
+        newhead = self.recusiveReverseList(head.next)   # recusive loop to get the last element
+        head.next.next = head                           # use an example:  1 -> 4 -> 6 -> 7
+        head.next = None
+
+        return newhead
+        
 
 def main():
     head = ListNode(23)
@@ -67,8 +82,11 @@ def main():
     head.next.next = ListNode(-76)
     head.printList()
     sol = Solution()
-    rev = sol.reverseList(head)
-    rev.printList()
+    # rev = sol.reverseList(head)
+    # rev.printList()
+
+    recRev = sol.recusiveReverseList(head)
+    recRev.printList()
 
 if __name__ == "__main__":
     main()
