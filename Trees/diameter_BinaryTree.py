@@ -25,6 +25,10 @@ The number of nodes in the tree is in the range [1, 104].
 -100 <= Node.val <= 100
 '''
 
+# solution explaination : 
+# move to the depth / last node of the tree and calculate the maximun of depth of each subtree;
+# then take the max left subtree and max right subtree -> add them -> to get diameter of the subtree/node
+# calculate the max of diameter from each recursion of node -> return the max value
 
 # Definition for a binary tree node.
 class TreeNode(object):
@@ -38,7 +42,7 @@ class Solution(object):
 
     # solution :
     # time complexity : o(n) ; space complexity = o(1)
-    # runtime: 2 ms ; Memory : 16 MB
+    # runtime: 24 ms ; Memory : 16 MB
     def diameterOfBinaryTree(self, root):
         """
         :type root: TreeNode
@@ -54,7 +58,7 @@ class Solution(object):
             # global diameter
             if root == None:
                 return -1
-            leftDepth = 1 + dfs(root.left)
+            leftDepth = 1 + dfs(root.left)          
             rightDepth = 1 + dfs(root.right)
 
             diameter[0] = max(diameter[0], leftDepth + rightDepth)          # accessing the global varibale
