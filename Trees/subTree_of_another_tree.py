@@ -73,6 +73,37 @@ class Solution(object):
             return self.isSameTree(main.left, sub.left) and self.isSameTree(main.right , sub.right)
 
 
+# Solution 2: same approach differnt code:
+# runtime: 133 ms ; Memory : 14.5 MB
+# class Solution(object):
+#     def isSubtree(self, root, subRoot):
+#         """
+#         :type root: TreeNode
+#         :type subRoot: TreeNode
+#         :rtype: bool
+#         """
+
+#         if not subRoot : # if subTree is null i.e it is subTree of all trees
+#             return True
+#         if  not root:       # if tree is null , and subTree is not null : False : order is important
+#             return False 
+         
+#         if self.isSameTree(root, subRoot):
+#             return True
+
+#         return  self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+
+
+#     def isSameTree(self,main , sub):
+            
+#             if main == None and sub == None:
+#                 return True
+#             if main and sub and main.val == sub.val:
+#                 return self.isSameTree(main.left , sub.left) and self.isSameTree(main.right , sub.right)
+
+#             return False
+                
+
 def main():
     tree1 = TreeNode(1, TreeNode(2), TreeNode(1))
     tree2 = TreeNode(1)
